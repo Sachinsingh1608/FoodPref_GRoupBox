@@ -55,6 +55,12 @@
             this.label6 = new System.Windows.Forms.Label();
             this.DOB = new System.Windows.Forms.DateTimePicker();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.Clear = new System.Windows.Forms.Button();
+            this.Add = new System.Windows.Forms.Button();
+            this.Savedata = new System.Windows.Forms.Button();
+            this.LoadData = new System.Windows.Forms.Button();
+            this.View = new System.Windows.Forms.Button();
+            this.Close = new System.Windows.Forms.Button();
             this.Food.SuspendLayout();
             this.Gender.SuspendLayout();
             this.SuspendLayout();
@@ -266,7 +272,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(88, 469);
+            this.label5.Location = new System.Drawing.Point(81, 442);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(74, 20);
             this.label5.TabIndex = 12;
@@ -280,7 +286,7 @@
             "One",
             "Two",
             "Three"});
-            this.comboBox1.Location = new System.Drawing.Point(90, 506);
+            this.comboBox1.Location = new System.Drawing.Point(83, 479);
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(202, 28);
             this.comboBox1.TabIndex = 13;
@@ -339,11 +345,87 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
+            // Clear
+            // 
+            this.Clear.BackColor = System.Drawing.Color.LightGray;
+            this.Clear.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Clear.Location = new System.Drawing.Point(27, 549);
+            this.Clear.Name = "Clear";
+            this.Clear.Size = new System.Drawing.Size(110, 36);
+            this.Clear.TabIndex = 19;
+            this.Clear.Text = "Clear";
+            this.Clear.UseVisualStyleBackColor = false;
+            this.Clear.Click += new System.EventHandler(this.Clear_Click);
+            // 
+            // Add
+            // 
+            this.Add.BackColor = System.Drawing.Color.LightGray;
+            this.Add.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Add.Location = new System.Drawing.Point(262, 549);
+            this.Add.Name = "Add";
+            this.Add.Size = new System.Drawing.Size(110, 36);
+            this.Add.TabIndex = 20;
+            this.Add.Text = "Add";
+            this.Add.UseVisualStyleBackColor = false;
+            this.Add.Click += new System.EventHandler(this.Add_Click);
+            // 
+            // Savedata
+            // 
+            this.Savedata.BackColor = System.Drawing.Color.LightGray;
+            this.Savedata.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Savedata.Location = new System.Drawing.Point(502, 549);
+            this.Savedata.Name = "Savedata";
+            this.Savedata.Size = new System.Drawing.Size(149, 36);
+            this.Savedata.TabIndex = 21;
+            this.Savedata.Text = "Save Data";
+            this.Savedata.UseVisualStyleBackColor = false;
+            // 
+            // LoadData
+            // 
+            this.LoadData.BackColor = System.Drawing.Color.LightGray;
+            this.LoadData.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LoadData.Location = new System.Drawing.Point(759, 549);
+            this.LoadData.Name = "LoadData";
+            this.LoadData.Size = new System.Drawing.Size(142, 36);
+            this.LoadData.TabIndex = 22;
+            this.LoadData.Text = "Load Data";
+            this.LoadData.UseVisualStyleBackColor = false;
+            // 
+            // View
+            // 
+            this.View.BackColor = System.Drawing.Color.LightGray;
+            this.View.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.View.Location = new System.Drawing.Point(1066, 549);
+            this.View.Name = "View";
+            this.View.Size = new System.Drawing.Size(110, 36);
+            this.View.TabIndex = 23;
+            this.View.Text = "View";
+            this.View.UseVisualStyleBackColor = false;
+            // 
+            // Close
+            // 
+            this.Close.BackColor = System.Drawing.Color.LightGray;
+            this.Close.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Close.Location = new System.Drawing.Point(1325, 549);
+            this.Close.Name = "Close";
+            this.Close.Size = new System.Drawing.Size(110, 36);
+            this.Close.TabIndex = 24;
+            this.Close.Text = "Close";
+            this.Close.UseVisualStyleBackColor = false;
+            this.Close.Click += new System.EventHandler(this.Close_Click);
+            // 
             // Veg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1447, 708);
+            this.Controls.Add(this.Close);
+            this.Controls.Add(this.View);
+            this.Controls.Add(this.LoadData);
+            this.Controls.Add(this.Savedata);
+            this.Controls.Add(this.Add);
+            this.Controls.Add(this.Clear);
             this.Controls.Add(this.DOB);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.RollNoBut);
@@ -363,7 +445,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-
+            this.Name = "Veg";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Veg_Load);
             this.Food.ResumeLayout(false);
@@ -403,6 +485,12 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.DateTimePicker DOB;
         private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Button Clear;
+        private System.Windows.Forms.Button Add;
+        private System.Windows.Forms.Button Savedata;
+        private System.Windows.Forms.Button LoadData;
+        private System.Windows.Forms.Button View;
+        private System.Windows.Forms.Button Close;
     }
 }
 

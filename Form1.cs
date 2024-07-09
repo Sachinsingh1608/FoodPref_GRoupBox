@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace WindowsFormsApp1
 {
     public partial class Veg : Form
     {
+        private bool lbCheck= false;
         public Veg()
         {
             InitializeComponent();
@@ -133,22 +135,97 @@ namespace WindowsFormsApp1
 
             if (lnCounter == 4)
             {
-                Data.Text = RollNoBut.Text + " , " + Name.Text + " , " + DOB.Text + " , " + lsOwns + " , " + lcFood + " , " + lcMotherToung+" , "+lcgender;
+                Data.Text = RollNoBut.Text + "|" + Name.Text + "|" + DOB.Text + "|" + lsOwns + "|" + lcFood + "|" + lcMotherToung+"|"+lcgender;
+                lbCheck = true;
+                DataLoad();
             }
+           
+            
 
         }
         private void timer1_Tick(object sender, EventArgs e)
         {
             LabelUpdate();
+         
         }
-
+        private void DataLoad()
+        {
+            if (lbCheck == true)
+                Add.Enabled = true;
+            else
+                Add.Enabled = false;
+        }
         private void Veg_Load(object sender, EventArgs e)
         {
-           
+            Add.Enabled = false;
+
         }
+      
 
         private void Food_Enter(object sender, EventArgs e)
         {
+
+        }
+
+        private void Close_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void Clear_Click(object sender, EventArgs e)
+        {
+            Name.Text = "";
+            RollNoBut.Text = "";
+            DOB.Text = "";
+            Car.Checked = false;
+            Cycle.Checked = false;
+            Bike.Checked = false;
+            VegBut.Checked= false;
+            Nonveg.Checked = false;
+            omnivores.Checked = false;
+            Male.Checked= false;
+            Female.Checked= false;
+            TransGender.Checked = false;
+            Hindi.Checked = false;
+            English.Checked = false;
+            Urdu.Checked = false;
+            Data.Text = "";
+
+
+        }
+
+        private void Add_Click(object sender, EventArgs e)
+        {
+           
+                FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\Employee\\Food.txt",
+                    FileMode.Append, FileAccess.Write);
+                StreamWriter IobjSW = new StreamWriter(IobjFS);
+            string lsStr = Data.Text;
+            if (lbCheck==true)
+            {
+                IobjSW.WriteLine(lsStr);
+                IobjSW.Flush();
+                IobjSW.Close();
+                IobjFS.Close();
+            }
+            Name.Text = "";
+            RollNoBut.Text = "";
+            DOB.Text = "";
+            Car.Checked = false;
+            Cycle.Checked = false;
+            Bike.Checked = false;
+            VegBut.Checked = false;
+            Nonveg.Checked = false;
+            omnivores.Checked = false;
+            Male.Checked = false;
+            Female.Checked = false;
+            TransGender.Checked = false;
+            Hindi.Checked = false;
+            English.Checked = false;
+            Urdu.Checked = false;
+            Data.Text = "";
+            Add.Enabled = false;
+            MessageBox.Show("Data Saved!");
 
         }
     }
