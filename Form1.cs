@@ -12,140 +12,135 @@ using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace WindowsFormsApp1
 {
+   
     public partial class Veg : Form
     {
+        int lnidx = -1;
+        private List<string> lobjRoll = new List<string>();
+        private List<string> lobjName = new List<string>();
+        private List<string> lobjbirthDate = new List<string>();
+
+        private List<string> lobjOwns = new List<string>();
+        private List<string> lobjfood = new List<string>();
+        private List<string> lobjtongue = new List<string>();
+        private List<string> lobjgender = new List<string>();
+        private List<string> lobjStd = new List<string>();
         private bool lbCheck= false;
         public Veg()
         {
             InitializeComponent();
-            InitializeTimer();
+         
         }
 
-        private void InitializeTimer()
-        {
-            timer1 = new Timer();
-            timer1.Interval = 200; 
-            timer1.Tick += new EventHandler(timer1_Tick);
-            timer1.Start();
-        }
+       
         private void Gender_Enter(object sender, EventArgs e)
         {
 
         }
         private void LabelUpdate()
         {
-            int lnCounter = 0;
+            string lsAnsStr = "";
             string lsOwns = "";
-            if (Name.Text.Length > 0 && RollNoBut.Text.Length > 0 && DOB.Text.Length>0)
+
+            if (Car.Checked)
             {
-                if (Car.Checked)
-                {
-                    lsOwns += 'Y';
-                }
-                else
-                {
-                    lsOwns += 'N';
-                }
-
-                if (Bike.Checked)
-                {
-                    lsOwns += 'Y';
-                }
-                else
-                {
-                    lsOwns += 'N';
-                }
-
-
-                if (Cycle.Checked)
-                {
-                    lsOwns += 'Y';
-                }
-                else
-                {
-                    lsOwns += 'N';
-                }
-                lnCounter++;
+                lsOwns += 'Y';
             }
-            char lcFood='X' ;
-            if (lnCounter == 1)
+            else
             {
-                
-               if(VegBut.Checked)
-                {
-                    lcFood = 'V';
-                    lnCounter++;
-                }
-               if(Nonveg.Checked)
-                {
-                    lcFood = 'N';
-                    lnCounter++;
-                }
-               if(omnivores.Checked)
-                {
-                    lcFood = 'O';
-                    lnCounter++;
-                }
-              
-
+                lsOwns += 'N';
             }
 
-            char lcMotherToung='X' ;
-          if(lnCounter == 2)
+            if (Bike.Checked)
             {
-               if(Hindi.Checked)
-                {
-                    lcMotherToung = 'H';
-                    lnCounter++;
-                }
-               if(English.Checked)
-                {
-                    lcMotherToung = 'E';
-                    lnCounter++;
-                }
-                if (Urdu.Checked)
-                {
-                    lcMotherToung = 'U';
-                    lnCounter++;
-                }
+                lsOwns += 'Y';
+            }
+            else
+            {
+                lsOwns += 'N';
+            }
+
+
+            if (Cycle.Checked)
+            {
+                lsOwns += 'Y';
+            }
+            else
+            {
+                lsOwns += 'N';
+            }
+       
+
+            string lcFood="" ;
+
+            if (VegBut.Checked)
+            {
+                lcFood = "V";
                
             }
-            char lcgender = 'X';
-          if(lnCounter == 3)
+            if (Nonveg.Checked)
             {
-                if(Male.Checked)
-                {
-                    lcgender = 'M';
-                    lnCounter++;
-                }
-                if(Female.Checked)
-                {
-                    lcgender = 'F';
-                    lnCounter++;
-                }
-                if(TransGender.Checked)
-                {
-                    lcgender = 'T';
-                    lnCounter++;
-                }
-           
+                lcFood = "N";
+             
+            }
+            if (omnivores.Checked)
+            {
+                lcFood = "O";
+               
             }
 
-           
 
-            if (lnCounter == 4)
+
+
+            string lcMotherToung="" ;
+
+            if (Hindi.Checked)
             {
-                Data.Text = RollNoBut.Text + "|" + Name.Text + "|" + DOB.Text + "|" + lsOwns + "|" + lcFood + "|" + lcMotherToung+"|"+lcgender;
-                lbCheck = true;
-                DataLoad();
-            }
+                lcMotherToung ="H";
            
-            
+            }
+            if (English.Checked)
+            {
+                lcMotherToung = "E";
+               
+            }
+            if (Urdu.Checked)
+            {
+                lcMotherToung = "U";
+              
+            }
+
+
+            string lcgender="" ;
+
+            if (Male.Checked)
+            {
+                lcgender = "M";
+              
+            }
+            if (Female.Checked)
+            {
+                lcgender = "F";
+               
+            }
+            if (TransGender.Checked)
+            {
+                lcgender = "T";
+           
+            }
+         
+            lsAnsStr +=RollNoBut.Text + "|" + Name.Text + "|" + DOB.Text + "|" + lsOwns + "|" + lcFood + "|" + lcMotherToung + "|" + lcgender;
+            Data.Text = lsAnsStr;
+           
+            DataLoad();
+
+
 
         }
+        
         private void timer1_Tick(object sender, EventArgs e)
         {
-            LabelUpdate();
+       
          
         }
         private void DataLoad()
@@ -155,9 +150,162 @@ namespace WindowsFormsApp1
             else
                 Add.Enabled = false;
         }
+        public void FetchData()
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\Employee\\Food.txt",
+                FileMode.Open, FileAccess.Read);
+            StreamReader IobjSR = new StreamReader(IobjFS);
+           
+            while (!IobjSR.EndOfStream)
+            {
+                lobjStd.Add(IobjSR.ReadLine());
+            }
+            IobjSR.Close();
+
+         
+            foreach (string Str in lobjStd)
+            {
+                lobjRoll.Add(Str.Split('|')[0]);
+                lobjName.Add(Str.Split('|')[1]);
+                lobjbirthDate.Add(Str.Split('|')[2]);
+                lobjOwns.Add(Str.Split('|')[3]);
+                lobjfood.Add(Str.Split('|')[4]);
+             
+              
+                lobjtongue.Add(Str.Split('|')[5]);
+                lobjgender.Add(Str.Split('|')[6]);
+               
+            }
+            foreach(string rollNo in lobjRoll)
+            {
+                if (lbCheck == false)
+                {
+                    RollNoBut.Items.Add(rollNo);
+                   
+                }
+            }
+            string lsLastRoll = lobjRoll.Last();
+            string lsLastRollNum = lsLastRoll.Split('-')[1];
+            string lsFirstPartRoll = lsLastRoll.Split('-')[0];
+            int lnRoll = int.Parse(lsLastRollNum);
+            string lsNewRoll = "";
+            if (lnRoll >=1 && lnRoll <9)
+            {
+                lsNewRoll+= lsFirstPartRoll+'-'+'0';
+                lsNewRoll += (lnRoll + 1).ToString();
+                RollNoBut.Items.Add(lsNewRoll);
+
+
+
+            }
+            if(lnRoll>=9)
+            {
+                lsNewRoll += lsFirstPartRoll + '-';
+                lsNewRoll += (lnRoll + 1).ToString();
+                RollNoBut.Items.Add(lsNewRoll);
+            }
+            lbCheck = true;
+            if (RollNoBut.Text.Length != 0 && RollNoBut.Text!= lsNewRoll)
+            {
+                int idx = lobjRoll.IndexOf(RollNoBut.Text);
+                Name.Text = lobjName[idx];
+                DOB.Text = lobjbirthDate[idx];
+                string lsowns = lobjOwns[idx];
+                if (lsowns[0]=='Y')
+                {
+                    Car.Checked = true;
+                }
+                else
+                {
+                    Car.Checked=false;
+                }
+
+                if (lsowns[1] =='Y')
+                {
+                    Bike.Checked = true;
+                }
+                else
+                {
+                    Bike.Checked=false;
+                }
+
+                if (lsowns[2] == 'Y')
+                {
+                    Cycle.Checked = true;
+                }
+                else
+                {
+                    Cycle.Checked=false;
+                }
+
+
+
+
+                string lsFood = lobjfood[idx];
+                if(lsFood == "O")
+                {
+                    omnivores.Checked = true;
+                }
+                if(lsFood == "V")
+                {
+                    VegBut.Checked = true;
+                }
+                if(lsFood == "N")
+                {
+                    Nonveg.Checked = true;   
+                }
+
+
+                string lsMotherTongue = lobjtongue[idx];
+                if(lsMotherTongue == "E")
+                {
+                    English.Checked = true;
+                }
+                if (lsMotherTongue == "H")
+                {
+                    Hindi.Checked = true;
+                }
+                if(lsMotherTongue == "U")
+                {
+                    Urdu.Checked = true;
+                }
+
+
+
+                string lsGender = lobjgender[idx];
+                if( lsGender == "F")
+                {
+                    Female.Checked = true;
+                }
+                if(lsGender == "M")
+                {
+                    Male.Checked = true;
+                }
+
+                if(lsGender == "T"){
+                    TransGender.Checked = true;
+                }
+            }
+
+
+
+            
+          
+                
+
+         
+
+
+
+
+
+
+
+        }
         private void Veg_Load(object sender, EventArgs e)
         {
             Add.Enabled = false;
+            FetchData();
 
         }
       
@@ -196,12 +344,96 @@ namespace WindowsFormsApp1
 
         private void Add_Click(object sender, EventArgs e)
         {
-           
-                FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\Employee\\Food.txt",
-                    FileMode.Append, FileAccess.Write);
-                StreamWriter IobjSW = new StreamWriter(IobjFS);
+ 
+        }
+
+        private void Name_TextChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void RollNoBut_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            FetchData();
+        }
+
+        private void DOB_ValueChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Car_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Car_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Bike_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Cycle_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void VegBut_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Nonveg_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void omnivores_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Hindi_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void English_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Urdu_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Male_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Female_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void TransGender_CheckedChanged(object sender, EventArgs e)
+        {
+            LabelUpdate();
+        }
+
+        private void Savedata_Click(object sender, EventArgs e)
+        {
+            FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\Employee\\Food.txt",
+                   FileMode.Append, FileAccess.Write);
+            StreamWriter IobjSW = new StreamWriter(IobjFS);
             string lsStr = Data.Text;
-            if (lbCheck==true)
+            if (lbCheck == true)
             {
                 IobjSW.WriteLine(lsStr);
                 IobjSW.Flush();
@@ -226,7 +458,15 @@ namespace WindowsFormsApp1
             Data.Text = "";
             Add.Enabled = false;
             MessageBox.Show("Data Saved!");
-
+        }
+        private void ReloadForm()
+        {
+           
+            
+        }
+        private void LoadData_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 }

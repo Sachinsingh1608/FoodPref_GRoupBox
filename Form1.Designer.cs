@@ -48,7 +48,6 @@
             this.Female = new System.Windows.Forms.RadioButton();
             this.Male = new System.Windows.Forms.RadioButton();
             this.label5 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.Data = new System.Windows.Forms.Label();
             this.Name = new System.Windows.Forms.TextBox();
             this.RollNoBut = new System.Windows.Forms.ComboBox();
@@ -61,6 +60,7 @@
             this.LoadData = new System.Windows.Forms.Button();
             this.View = new System.Windows.Forms.Button();
             this.Close = new System.Windows.Forms.Button();
+            this.Shoe = new System.Windows.Forms.ListBox();
             this.Food.SuspendLayout();
             this.Gender.SuspendLayout();
             this.SuspendLayout();
@@ -103,7 +103,7 @@
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(178, 20);
             this.label4.TabIndex = 3;
-            this.label4.Text = "Mother Tounge";
+            this.label4.Text = "Mother Tongue";
             // 
             // Car
             // 
@@ -115,6 +115,8 @@
             this.Car.TabIndex = 4;
             this.Car.Text = "Car";
             this.Car.UseVisualStyleBackColor = true;
+            this.Car.CheckedChanged += new System.EventHandler(this.Car_CheckedChanged);
+            this.Car.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Car_KeyPress);
             // 
             // Bike
             // 
@@ -126,6 +128,7 @@
             this.Bike.TabIndex = 5;
             this.Bike.Text = "Bike";
             this.Bike.UseVisualStyleBackColor = true;
+            this.Bike.CheckedChanged += new System.EventHandler(this.Bike_CheckedChanged);
             // 
             // Cycle
             // 
@@ -137,6 +140,7 @@
             this.Cycle.TabIndex = 6;
             this.Cycle.Text = "Cycle";
             this.Cycle.UseVisualStyleBackColor = true;
+            this.Cycle.CheckedChanged += new System.EventHandler(this.Cycle_CheckedChanged);
             // 
             // Hindi
             // 
@@ -149,6 +153,7 @@
             this.Hindi.TabStop = true;
             this.Hindi.Text = "Hindi";
             this.Hindi.UseVisualStyleBackColor = true;
+            this.Hindi.CheckedChanged += new System.EventHandler(this.Hindi_CheckedChanged);
             // 
             // English
             // 
@@ -161,6 +166,7 @@
             this.English.TabStop = true;
             this.English.Text = "English";
             this.English.UseVisualStyleBackColor = true;
+            this.English.CheckedChanged += new System.EventHandler(this.English_CheckedChanged);
             // 
             // Urdu
             // 
@@ -173,6 +179,7 @@
             this.Urdu.TabStop = true;
             this.Urdu.Text = "Urdu";
             this.Urdu.UseVisualStyleBackColor = true;
+            this.Urdu.CheckedChanged += new System.EventHandler(this.Urdu_CheckedChanged);
             // 
             // Food
             // 
@@ -198,6 +205,7 @@
             this.omnivores.TabStop = true;
             this.omnivores.Text = "omnivores";
             this.omnivores.UseVisualStyleBackColor = true;
+            this.omnivores.CheckedChanged += new System.EventHandler(this.omnivores_CheckedChanged);
             // 
             // Nonveg
             // 
@@ -209,6 +217,7 @@
             this.Nonveg.TabStop = true;
             this.Nonveg.Text = "NonVeg";
             this.Nonveg.UseVisualStyleBackColor = true;
+            this.Nonveg.CheckedChanged += new System.EventHandler(this.Nonveg_CheckedChanged);
             // 
             // VegBut
             // 
@@ -220,6 +229,7 @@
             this.VegBut.TabStop = true;
             this.VegBut.Text = "Veg";
             this.VegBut.UseVisualStyleBackColor = true;
+            this.VegBut.CheckedChanged += new System.EventHandler(this.VegBut_CheckedChanged);
             // 
             // Gender
             // 
@@ -245,6 +255,7 @@
             this.TransGender.TabStop = true;
             this.TransGender.Text = "TransGender";
             this.TransGender.UseVisualStyleBackColor = true;
+            this.TransGender.CheckedChanged += new System.EventHandler(this.TransGender_CheckedChanged);
             // 
             // Female
             // 
@@ -256,6 +267,7 @@
             this.Female.TabStop = true;
             this.Female.Text = "Female";
             this.Female.UseVisualStyleBackColor = true;
+            this.Female.CheckedChanged += new System.EventHandler(this.Female_CheckedChanged);
             // 
             // Male
             // 
@@ -267,6 +279,7 @@
             this.Male.TabStop = true;
             this.Male.Text = "Male";
             this.Male.UseVisualStyleBackColor = true;
+            this.Male.CheckedChanged += new System.EventHandler(this.Male_CheckedChanged);
             // 
             // label5
             // 
@@ -277,19 +290,6 @@
             this.label5.Size = new System.Drawing.Size(74, 20);
             this.label5.TabIndex = 12;
             this.label5.Text = "Shoes";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "One",
-            "Two",
-            "Three"});
-            this.comboBox1.Location = new System.Drawing.Point(83, 479);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(202, 28);
-            this.comboBox1.TabIndex = 13;
             // 
             // Data
             // 
@@ -308,19 +308,17 @@
             this.Name.Name = "Name";
             this.Name.Size = new System.Drawing.Size(328, 36);
             this.Name.TabIndex = 15;
+            this.Name.TextChanged += new System.EventHandler(this.Name_TextChanged);
             // 
             // RollNoBut
             // 
             this.RollNoBut.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RollNoBut.FormattingEnabled = true;
-            this.RollNoBut.Items.AddRange(new object[] {
-            "2022-01",
-            "2022-02",
-            "2022-03"});
             this.RollNoBut.Location = new System.Drawing.Point(980, 49);
             this.RollNoBut.Name = "RollNoBut";
             this.RollNoBut.Size = new System.Drawing.Size(233, 28);
             this.RollNoBut.TabIndex = 16;
+            this.RollNoBut.SelectedIndexChanged += new System.EventHandler(this.RollNoBut_SelectedIndexChanged);
             // 
             // label6
             // 
@@ -340,6 +338,7 @@
             this.DOB.Name = "DOB";
             this.DOB.Size = new System.Drawing.Size(430, 27);
             this.DOB.TabIndex = 18;
+            this.DOB.ValueChanged += new System.EventHandler(this.DOB_ValueChanged);
             // 
             // timer1
             // 
@@ -349,7 +348,7 @@
             // 
             this.Clear.BackColor = System.Drawing.Color.LightGray;
             this.Clear.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Clear.Location = new System.Drawing.Point(27, 549);
+            this.Clear.Location = new System.Drawing.Point(28, 601);
             this.Clear.Name = "Clear";
             this.Clear.Size = new System.Drawing.Size(110, 36);
             this.Clear.TabIndex = 19;
@@ -361,7 +360,7 @@
             // 
             this.Add.BackColor = System.Drawing.Color.LightGray;
             this.Add.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Add.Location = new System.Drawing.Point(262, 549);
+            this.Add.Location = new System.Drawing.Point(263, 601);
             this.Add.Name = "Add";
             this.Add.Size = new System.Drawing.Size(110, 36);
             this.Add.TabIndex = 20;
@@ -373,29 +372,31 @@
             // 
             this.Savedata.BackColor = System.Drawing.Color.LightGray;
             this.Savedata.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Savedata.Location = new System.Drawing.Point(502, 549);
+            this.Savedata.Location = new System.Drawing.Point(503, 601);
             this.Savedata.Name = "Savedata";
             this.Savedata.Size = new System.Drawing.Size(149, 36);
             this.Savedata.TabIndex = 21;
             this.Savedata.Text = "Save Data";
             this.Savedata.UseVisualStyleBackColor = false;
+            this.Savedata.Click += new System.EventHandler(this.Savedata_Click);
             // 
             // LoadData
             // 
             this.LoadData.BackColor = System.Drawing.Color.LightGray;
             this.LoadData.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LoadData.Location = new System.Drawing.Point(759, 549);
+            this.LoadData.Location = new System.Drawing.Point(760, 601);
             this.LoadData.Name = "LoadData";
             this.LoadData.Size = new System.Drawing.Size(142, 36);
             this.LoadData.TabIndex = 22;
             this.LoadData.Text = "Load Data";
             this.LoadData.UseVisualStyleBackColor = false;
+            this.LoadData.Click += new System.EventHandler(this.LoadData_Click);
             // 
             // View
             // 
             this.View.BackColor = System.Drawing.Color.LightGray;
             this.View.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.View.Location = new System.Drawing.Point(1066, 549);
+            this.View.Location = new System.Drawing.Point(1067, 601);
             this.View.Name = "View";
             this.View.Size = new System.Drawing.Size(110, 36);
             this.View.TabIndex = 23;
@@ -406,7 +407,7 @@
             // 
             this.Close.BackColor = System.Drawing.Color.LightGray;
             this.Close.Font = new System.Drawing.Font("Lucida Console", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Close.Location = new System.Drawing.Point(1325, 549);
+            this.Close.Location = new System.Drawing.Point(1326, 601);
             this.Close.Name = "Close";
             this.Close.Size = new System.Drawing.Size(110, 36);
             this.Close.TabIndex = 24;
@@ -414,12 +415,27 @@
             this.Close.UseVisualStyleBackColor = false;
             this.Close.Click += new System.EventHandler(this.Close_Click);
             // 
+            // Shoe
+            // 
+            this.Shoe.Font = new System.Drawing.Font("Lucida Console", 10.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Shoe.FormattingEnabled = true;
+            this.Shoe.ItemHeight = 18;
+            this.Shoe.Items.AddRange(new object[] {
+            "One",
+            "Two ",
+            "Three"});
+            this.Shoe.Location = new System.Drawing.Point(80, 465);
+            this.Shoe.Name = "Shoe";
+            this.Shoe.Size = new System.Drawing.Size(238, 58);
+            this.Shoe.TabIndex = 26;
+            // 
             // Veg
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Azure;
             this.ClientSize = new System.Drawing.Size(1447, 708);
+            this.Controls.Add(this.Shoe);
             this.Controls.Add(this.Close);
             this.Controls.Add(this.View);
             this.Controls.Add(this.LoadData);
@@ -431,7 +447,6 @@
             this.Controls.Add(this.RollNoBut);
             this.Controls.Add(this.Name);
             this.Controls.Add(this.Data);
-            this.Controls.Add(this.comboBox1);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.Gender);
             this.Controls.Add(this.Food);
@@ -445,7 +460,7 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Name = "Veg";
+           // this.Name = "Veg";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Veg_Load);
             this.Food.ResumeLayout(false);
@@ -478,7 +493,6 @@
         private System.Windows.Forms.RadioButton Female;
         private System.Windows.Forms.RadioButton Male;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.ComboBox comboBox1;
         private System.Windows.Forms.Label Data;
         private System.Windows.Forms.TextBox Name;
         private System.Windows.Forms.ComboBox RollNoBut;
@@ -491,6 +505,7 @@
         private System.Windows.Forms.Button LoadData;
         private System.Windows.Forms.Button View;
         private System.Windows.Forms.Button Close;
+        private System.Windows.Forms.ListBox Shoe;
     }
 }
 
