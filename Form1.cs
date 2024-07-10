@@ -16,6 +16,7 @@ namespace WindowsFormsApp1
     public partial class Veg : Form
     {
         int lnidx = -1;
+        bool lbAdd = false;
         private List<string> lobjRoll = new List<string>();
         private List<string> lobjName = new List<string>();
         private List<string> lobjbirthDate = new List<string>();
@@ -163,17 +164,17 @@ namespace WindowsFormsApp1
             IobjSR.Close();
 
          
-            foreach (string Str in lobjStd)
+            foreach (string lobjStr in lobjStd)
             {
-                lobjRoll.Add(Str.Split('|')[0]);
-                lobjName.Add(Str.Split('|')[1]);
-                lobjbirthDate.Add(Str.Split('|')[2]);
-                lobjOwns.Add(Str.Split('|')[3]);
-                lobjfood.Add(Str.Split('|')[4]);
+                lobjRoll.Add(lobjStr.Split('|')[0]);
+                lobjName.Add(lobjStr.Split('|')[1]);
+                lobjbirthDate.Add(lobjStr.Split('|')[2]);
+                lobjOwns.Add(lobjStr.Split('|')[3]);
+                lobjfood.Add(lobjStr.Split('|')[4]);
              
               
-                lobjtongue.Add(Str.Split('|')[5]);
-                lobjgender.Add(Str.Split('|')[6]);
+                lobjtongue.Add(lobjStr.Split('|')[5]);
+                lobjgender.Add(lobjStr.Split('|')[6]);
                
             }
             foreach(string rollNo in lobjRoll)
@@ -184,108 +185,95 @@ namespace WindowsFormsApp1
                    
                 }
             }
-            string lsLastRoll = lobjRoll.Last();
-            string lsLastRollNum = lsLastRoll.Split('-')[1];
-            string lsFirstPartRoll = lsLastRoll.Split('-')[0];
-            int lnRoll = int.Parse(lsLastRollNum);
-            string lsNewRoll = "";
-            if (lnRoll >=1 && lnRoll <9)
-            {
-                lsNewRoll+= lsFirstPartRoll+'-'+'0';
-                lsNewRoll += (lnRoll + 1).ToString();
-                RollNoBut.Items.Add(lsNewRoll);
+            
 
 
-
-            }
-            if(lnRoll>=9)
-            {
-                lsNewRoll += lsFirstPartRoll + '-';
-                lsNewRoll += (lnRoll + 1).ToString();
-                RollNoBut.Items.Add(lsNewRoll);
-            }
+           
             lbCheck = true;
-            if (RollNoBut.Text.Length != 0 && RollNoBut.Text!= lsNewRoll)
+            if (RollNoBut.Text.Length != 0 && lbAdd==false)
             {
-                int idx = lobjRoll.IndexOf(RollNoBut.Text);
-                Name.Text = lobjName[idx];
-                DOB.Text = lobjbirthDate[idx];
-                string lsowns = lobjOwns[idx];
-                if (lsowns[0]=='Y')
-                {
-                    Car.Checked = true;
-                }
-                else
-                {
-                    Car.Checked=false;
-                }
+                
+                    int idx = lobjRoll.IndexOf(RollNoBut.Text);
+                    Name.Text = lobjName[idx];
+                    DOB.Text = lobjbirthDate[idx];
+                    string lsowns = lobjOwns[idx];
+                    if (lsowns[0] == 'Y')
+                    {
+                        Car.Checked = true;
+                    }
+                    else
+                    {
+                        Car.Checked = false;
+                    }
 
-                if (lsowns[1] =='Y')
-                {
-                    Bike.Checked = true;
-                }
-                else
-                {
-                    Bike.Checked=false;
-                }
+                    if (lsowns[1] == 'Y')
+                    {
+                        Bike.Checked = true;
+                    }
+                    else
+                    {
+                        Bike.Checked = false;
+                    }
 
-                if (lsowns[2] == 'Y')
-                {
-                    Cycle.Checked = true;
-                }
-                else
-                {
-                    Cycle.Checked=false;
-                }
-
-
-
-
-                string lsFood = lobjfood[idx];
-                if(lsFood == "O")
-                {
-                    omnivores.Checked = true;
-                }
-                if(lsFood == "V")
-                {
-                    VegBut.Checked = true;
-                }
-                if(lsFood == "N")
-                {
-                    Nonveg.Checked = true;   
-                }
-
-
-                string lsMotherTongue = lobjtongue[idx];
-                if(lsMotherTongue == "E")
-                {
-                    English.Checked = true;
-                }
-                if (lsMotherTongue == "H")
-                {
-                    Hindi.Checked = true;
-                }
-                if(lsMotherTongue == "U")
-                {
-                    Urdu.Checked = true;
-                }
+                    if (lsowns[2] == 'Y')
+                    {
+                        Cycle.Checked = true;
+                    }
+                    else
+                    {
+                        Cycle.Checked = false;
+                    }
 
 
 
-                string lsGender = lobjgender[idx];
-                if( lsGender == "F")
-                {
-                    Female.Checked = true;
-                }
-                if(lsGender == "M")
-                {
-                    Male.Checked = true;
-                }
 
-                if(lsGender == "T"){
-                    TransGender.Checked = true;
+                    string lsFood = lobjfood[idx];
+                    if (lsFood == "O")
+                    {
+                        omnivores.Checked = true;
+                    }
+                    if (lsFood == "V")
+                    {
+                        VegBut.Checked = true;
+                    }
+                    if (lsFood == "N")
+                    {
+                        Nonveg.Checked = true;
+                    }
+
+
+                    string lsMotherTongue = lobjtongue[idx];
+                    if (lsMotherTongue == "E")
+                    {
+                        English.Checked = true;
+                    }
+                    if (lsMotherTongue == "H")
+                    {
+                        Hindi.Checked = true;
+                    }
+                    if (lsMotherTongue == "U")
+                    {
+                        Urdu.Checked = true;
+                    }
+
+
+
+                    string lsGender = lobjgender[idx];
+                    if (lsGender == "F")
+                    {
+                        Female.Checked = true;
+                    }
+                    if (lsGender == "M")
+                    {
+                        Male.Checked = true;
+                    }
+
+                    if (lsGender == "T")
+                    {
+                        TransGender.Checked = true;
+                    }
                 }
-            }
+            
 
 
 
@@ -304,7 +292,7 @@ namespace WindowsFormsApp1
         }
         private void Veg_Load(object sender, EventArgs e)
         {
-            Add.Enabled = false;
+          
             FetchData();
 
         }
@@ -319,11 +307,52 @@ namespace WindowsFormsApp1
         {
             this.Close();
         }
+        private void DataReload()
+        {
+            string lsLastRoll = lobjRoll.Last();
+            string lsLastRollNum = lsLastRoll.Split('-')[1];
+            string lsFirstPartRoll = lsLastRoll.Split('-')[0];
+            int lnRoll = int.Parse(lsLastRollNum);
+            string lsNewRoll = "";
+            if (lnRoll >= 1 && lnRoll < 9 && lbCheck == true)
+            {
+                lsNewRoll += lsFirstPartRoll + '-' + '0';
+                lsNewRoll += (lnRoll + 1).ToString();
+                RollNoBut.Items.Add(lsNewRoll);
+
+
+
+            }
+            else if (lnRoll >= 9 && lbCheck == true)
+            {
+                lsNewRoll += lsFirstPartRoll + '-';
+                lsNewRoll += (lnRoll + 1).ToString();
+                RollNoBut.Items.Add(lsNewRoll);
+            }
+            lbAdd = true;
+            Name.Text = "";
+
+            DOB.Text = "";
+            Car.Checked = false;
+            Cycle.Checked = false;
+            Bike.Checked = false;
+            VegBut.Checked = false;
+            Nonveg.Checked = false;
+            omnivores.Checked = false;
+            Male.Checked = false;
+            Female.Checked = false;
+            TransGender.Checked = false;
+            Hindi.Checked = false;
+            English.Checked = false;
+            Urdu.Checked = false;
+            Data.Text = "";
+            RollNoBut.Text = RollNoBut.Items[RollNoBut.Items.Count - 1].ToString();
+        }
 
         private void Clear_Click(object sender, EventArgs e)
         {
             Name.Text = "";
-            RollNoBut.Text = "";
+           
             DOB.Text = "";
             Car.Checked = false;
             Cycle.Checked = false;
@@ -338,17 +367,19 @@ namespace WindowsFormsApp1
             English.Checked = false;
             Urdu.Checked = false;
             Data.Text = "";
+           
 
 
         }
 
         private void Add_Click(object sender, EventArgs e)
         {
- 
+            DataReload();
         }
 
         private void Name_TextChanged(object sender, EventArgs e)
         {
+
             LabelUpdate();
         }
 
@@ -432,14 +463,18 @@ namespace WindowsFormsApp1
             FileStream IobjFS = new FileStream("C:\\Users\\singh\\Desktop\\Employee\\Food.txt",
                    FileMode.Append, FileAccess.Write);
             StreamWriter IobjSW = new StreamWriter(IobjFS);
-            string lsStr = Data.Text;
-            if (lbCheck == true)
-            {
-                IobjSW.WriteLine(lsStr);
-                IobjSW.Flush();
-                IobjSW.Close();
-                IobjFS.Close();
-            }
+            string lslabelText = Data.Text;
+          
+                IobjSW.WriteLine(lslabelText);
+        
+            IobjSW.Flush();
+            IobjSW.Close();
+            IobjFS.Close();
+
+
+
+
+
             Name.Text = "";
             RollNoBut.Text = "";
             DOB.Text = "";
@@ -458,6 +493,7 @@ namespace WindowsFormsApp1
             Data.Text = "";
             Add.Enabled = false;
             MessageBox.Show("Data Saved!");
+
         }
         private void ReloadForm()
         {
